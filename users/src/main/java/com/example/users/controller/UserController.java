@@ -1,13 +1,13 @@
 package com.example.users.controller;
 
 import com.example.users.dto.UserDto;
+import com.example.users.dto.UserRequestDto;
 import com.example.users.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +23,11 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<List<UserDto>> users() {
-        // return empty array
         return ResponseEntity.status(HttpStatus.OK).body(this.userService.getUsers());
+    }
+
+    @PostMapping()
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserRequestDto userDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.userService.createUser(userDto));
     }
 }
