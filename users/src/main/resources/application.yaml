@@ -9,8 +9,19 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${JPA_DDL_AUTO}
     show-sql: true
-
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
 server:
   port: 8080
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace

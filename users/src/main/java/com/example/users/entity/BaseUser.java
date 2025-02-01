@@ -32,4 +32,7 @@ public class BaseUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    private boolean active;
+
 }
